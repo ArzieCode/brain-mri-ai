@@ -1,0 +1,14 @@
+.venv/
+.DS_Store
+.history/
+__pycache__/
+*.py[cod]
+*.pth
+*.pt
+datasets/
+uploads/
+outputs/
+node_modules/
+frontend/node_modules/
+backend/.env
+{backend
