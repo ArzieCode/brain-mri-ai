@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base Reset ──────────────────────────────────────────── */
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: #080c14;
+    color: #e2e8f0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0d1422; }
+  ::-webkit-scrollbar-thumb { background: #1e2d45; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #00d4ff44; }
+}
+
+/* ── Glassmorphism Card ──────────────────────────────────── */
+@layer components {
+  .glass-card {
+    @apply bg-surface/60 backdrop-blur-xl border border-border/50 rounded-2xl;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.04) inset;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+    &:hover {
+      border-color: rgba(0, 212, 255, 0.3);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(0,212,255,0.08);
+    }
+  }
+
+  /* ── Glow Buttons ──────────────────────────────────────── */
+  .btn-primary {
+    @apply relative px-6 py-3 rounded-xl font-medium font-display text-sm
+           bg-cyan/10 text-cyan border border-cyan/30
+           hover:bg-cyan/20 hover:border-cyan/60
+           transition-all duration-200 cursor-pointer;
+    &:hover { box-shadow: 0 0 20px rgba(0,212,255,0.25); }
+  }
+
+  .btn-danger {
+    @apply px-6 py-3 rounded-xl font-medium font-display text-sm
+           bg-rose/10 text-rose border border-rose/30
+           hover:bg-rose/20 hover:border-rose/60
+           transition-all duration-200 cursor-pointer;
+  }
+
+  /* ── Status Badges ─────────────────────────────────────── */
+  .badge-valid {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium
+           bg-emerald/10 text-emerald border border-emerald/20;
+  }
+  .badge-invalid {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium
+           bg-rose/10 text-rose border border-rose/20;
+  }
+  .badge-warning {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium
+           bg-amber/10 text-amber border border-amber/20;
+  }
+
+  /* ── Data Row ──────────────────────────────────────────── */
+  .data-row {
+    @apply flex items-center justify-between py-2.5 border-b border-border/40 last:border-0;
+  }
+  .data-label { @apply text-sm text-muted font-mono; }
+  .data-value { @apply text-sm text-primary font-medium; }
+
+  /* ── Scan Line Animation ───────────────────────────────── */
+  .scan-container {
+    @apply relative overflow-hidden;
+    &::after {
+      content: '';
+      @apply absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-cyan to-transparent opacity-60;
+      animation: scanLine 3s ease-in-out infinite;
+    }
+  }
+}
+
+/* ── Keyframe Animations ─────────────────────────────────── */
+@keyframes scanLine {
+  0%   { top: -2px; }
+  100% { top: 100%; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(0,212,255,0.1) 50%, transparent 100%);
+  background-size: 200% auto;
+  animation: shimmer 2s linear infinite;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #00d4ff 0%, #8855ff 50%, #00ff88 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* ── Chart Overrides ─────────────────────────────────────── */
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
+.recharts-default-tooltip {
+  background: #111827 !important;
+  border: 1px solid #1e2d45 !important;
+  border-radius: 8px !important;
+}
+
+/* ── Drop Zone ───────────────────────────────────────────── */
+.dropzone-active {
+  border-color: rgba(0, 212, 255, 0.6) !important;
+  background: rgba(0, 212, 255, 0.05) !important;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.15) !important;
+}
+
+/* ── Loading Skeleton ───────────────────────────────────── */
+.skeleton {
+  @apply rounded bg-border/50;
+  background: linear-gradient(90deg, #1a2236 25%, #1e2d45 50%, #1a2236 75%);
+  background-size: 200% auto;
+  animation: shimmer 1.5s linear infinite;
+}

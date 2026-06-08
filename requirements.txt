@@ -1,0 +1,49 @@
+# ============================================================
+# Brain MRI Tumor Detection - Python Dependencies
+# Compatible with macOS Apple Silicon (M1/M2)
+# ============================================================
+
+# Core Web Framework
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+python-multipart==0.0.9
+aiofiles==23.2.1
+
+# Data Validation
+pydantic==2.7.1
+pydantic-settings==2.3.0
+
+# PyTorch (install separately via pip for MPS support)
+# See README for Apple Silicon specific install command
+torch>=2.2.0
+torchvision>=0.17.0
+
+# Image Processing
+Pillow==10.3.0
+opencv-python==4.9.0.80
+numpy==1.26.4
+
+# ML Utilities
+scikit-learn==1.5.0
+scipy==1.13.0
+matplotlib==3.9.0
+seaborn==0.13.2
+
+# GradCAM
+grad-cam==1.5.0
+
+# PDF Report Generation
+reportlab==4.2.0
+fpdf2==2.7.9
+
+# Utilities
+python-jose[cryptography]==3.3.0
+python-dotenv==1.0.1
+httpx==0.27.0
+loguru==0.7.2
+tqdm==4.66.4
+
+# Development
+pytest==8.2.2
+pytest-asyncio==0.23.7
+black==24.4.2
